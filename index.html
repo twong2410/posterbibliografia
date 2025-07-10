@@ -1,9 +1,35 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-  <title>Hola Mundo</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Página Web</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>Hola Mundo</h1>
+    <header>
+        <h1>Bienvenido a mi página web</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="pagina1.html">Página 1</a></li>
+            <li><a href="pagina2.html">Página 2</a></li>
+            <li><a href="https://www.ejemplo.com" target="_blank">Página Externa (Ejemplo)</a></li>
+            <li><a href="#" onclick="cambiarColor('rojo')">Cambiar Color</a></li>
+        </ul>
+    </nav>
+    <main>
+        <section>
+            <h2>Sección Principal</h2>
+            <p>Este es el contenido principal de la página. Puedes agregar más secciones y contenido aquí.</p>
+            <div id="miDiv">
+                <p>Este es un div con un ID.</p>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 Mi Empresa</p>
+    </footer>
+    <script src="script.js"></script>
 </body>
 </html>
