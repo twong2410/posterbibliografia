@@ -1,7 +1,146 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-   sitio en construccion
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Control - Clases</title>
+    <style>
+        :root {
+            --bg-main: #0f172a;
+            --bg-side: #1e293b;
+            --accent: #38bdf8;
+            --text: #f1f5f9;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            margin: 0;
+            display: flex;
+            height: 100vh;
+            background-color: var(--bg-main);
+            color: var(--text);
+        }
+
+        /* Barra Lateral */
+        nav {
+            width: 300px;
+            background-color: var(--bg-side);
+            display: flex;
+            flex-direction: column;
+            padding: 25px;
+            border-right: 1px solid #334155;
+        }
+
+        h2 { font-size: 1.1rem; color: var(--accent); margin-bottom: 30px; border-bottom: 1px solid #334155; padding-bottom: 10px; }
+
+        .section-label { font-size: 0.75rem; color: #94a3b8; text-transform: uppercase; letter-spacing: 1.5px; margin-top: 20px; }
+
+        .btn-item {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            background: #334155;
+            border: 1px solid transparent;
+            color: white;
+            text-align: left;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-item:hover {
+            background: #475569;
+            border-color: var(--accent);
+            transform: translateX(5px);
+        }
+
+        /* Área de Visualización */
+        main {
+            flex-grow: 1;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        #viewer-container {
+            flex-grow: 1;
+            background: #000;
+            border-radius: 12px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+        }
+
+        video, object {
+            width: 100%;
+            height: 100%;
+        }
+
+        .empty-state { text-align: center; color: #64748b; }
+    </style>
+</head>
+<body>
+
+    <nav>
+     <p class="section-label">Multimedia</p>
+        <button class="btn-item" onclick="viewGif('videos/video1.gif')"> ▶ Reproducir CAT (octubre 2025)</button>
+        <button class="btn-item" onclick="viewGif('videos/video2.gif')">▶ Reproducir CAT (noviembre 2025)</button>
+
+        <h2>Bibliografia</h2>
+         <p class="section-label">Documentación</p>
+        <button class="btn-item" onclick="viewPDF('docs/8.pdf')">📄 Informe CAT cerebral simple control (octubre 2025)</button>
+        <button class="btn-item" onclick="viewPDF('docs/9.pdf')">📄 Informe CAT cerebral simple control (noviembre 2025) </button>
+        <button class="btn-item" onclick="viewPDF('docs/1.pdf')">📄 Pseudobulbar Affect: A Network Disorder Linking Emotion, Neurobiology, and Therapeutics</button>
+        <button class="btn-item" onclick="viewPDF('docs/2.pdf')">📄 Pseudobulbar Affect Presenting as Hypomania</button>
+        <button class="btn-item" onclick="viewPDF('docs/3.pdf')">📄 Pharmacotherapeutic Management of Pseudobulbar Affect</button>
+        <button class="btn-item" onclick="viewPDF('docs/4Figura3.pdf')">📄 Figura 3: Fisiopatología propuesta del afecto patológico.</button>
+        <button class="btn-item" onclick="viewPDF('docs/4.pdf')">📄 Treatment of pseudobulbar affect (PBA) in a patient with a history of traumatic brain injury, partial brain resection, and brainstem stroke: a case report</button>
+        <button class="btn-item" onclick="viewPDF('docs/5.pdf')">📄 Neuronal Dysregulation in Stroke-Associated Pseudobulbar Affect (PBA): Diagnostic Scales and Current Treatment Options</button>
+        <button class="btn-item" onclick="viewPDF('docs/6.pdf')">📄 Areas of Brain Damage Underlying Increased Reports of Behavioral Disinhibition</button>
+        <button class="btn-item" onclick="viewPDF('docs/7.pdf')">📄 Divergent Disinhibition Profiles Linked to Externalizing Psychopathology</button>
+
+
+   
+
+
+    </nav>
+
+    <main>
+        <div id="viewer-container">
+            <div class="empty-state">
+                <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg>
+                <p>Selecciona un archivo para visualizarlo</p>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        const container = document.getElementById('viewer-container');
+        function viewGif(source) {
+            // Los GIFs se cargan como una imagen común
+            container.innerHTML = `<img src="${source}" class="gif-display" alt="Animación">`;
+        }
+
+        function viewVideo(source) {
+            container.innerHTML = `
+                <video controls autoplay>
+                    <source src="${source}" type="video/mp4">
+                    Tu navegador no soporta el formato MP4.
+                </video>`;
+        }
+
+        function viewPDF(source) {
+            container.innerHTML = `
+                <object data="${source}" type="application/pdf">
+                    <embed src="${source}" type="application/pdf" />
+                    <div style="color:white; padding:20px;">
+                        No se pudo cargar el PDF. <a href="${source}" style="color:var(--accent)">Descargar archivo</a>
+                    </div>
+                </object>`;
+        }
+    </script>
 
 </body>
 </html>
